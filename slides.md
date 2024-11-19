@@ -32,9 +32,9 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Wat is Docker?
 
 
-- Containerisatie
+- Virtualisatie op een ander niveau: containerisatie
 - Gebruikt Linux kernel
-- Isoleren van applicaties -> main use case!
+- Opzetten (geïsoleerde) applicaties
 
 ---
 
@@ -42,6 +42,8 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 - Wat is nu eigenlijk het verschil met een virtuele machine (VM)?
 
+  - Virtuele machine: emuleert volledige computer (virtuele hardware!)
+  - Docker container: spreekt Linux-kernel aan die draait op een hostsysteem
 ---
 
 # Bouwstenen van Docker
@@ -69,6 +71,28 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Docker Container
 
 - Wat is een Docker container?
+
+---
+
+# Docker - structuur
+
+![bg 100% 100%](./img/docker-structure.png)
+
+
+---
+
+# Port bindings
+
+- Elke container heeft een IP-adres (zelf ingesteld of automatisch toegewezen)
+- Elke container zit in een (of meerdere) Docker netwerk (zelf ingesteld of automatisch toegewezen)
+- Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
+---
+
+
+# Port bindings - visueel
+
+
+INSERT IMAGE THAT VISUALISES THIS!
 
 ---
 
