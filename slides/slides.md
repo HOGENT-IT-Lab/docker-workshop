@@ -74,6 +74,13 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 ---
 
+# Docker - structuur
+
+![bg 100% 100%](./img/docker-structure.png)
+
+
+---
+
 # Port bindings
 
 - Elke container heeft een IP-adres (zelf ingesteld of automatisch toegewezen)
