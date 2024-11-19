@@ -42,6 +42,8 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 - Wat is nu eigenlijk het verschil met een virtuele machine (VM)?
 
+  - Virtuele machine: emuleert volledige computer (virtuele hardware!)
+  - Docker container: spreken Linux-kernel aan die draait op een hostsysteem
 ---
 
 # Bouwstenen van Docker
