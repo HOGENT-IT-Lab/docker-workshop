@@ -32,9 +32,9 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Wat is Docker?
 
 
-- Containerisatie
+- Virtualisatie op een ander niveau: containerisatie
 - Gebruikt Linux kernel
-- Isoleren van applicaties -> main use case!
+- Opzetten (geïsoleerde) applicaties
 
 ---
 
