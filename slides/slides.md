@@ -74,6 +74,21 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 ---
 
+# Port bindings
+
+- Elke container heeft een IP-adres (zelf ingesteld of automatisch toegewezen)
+- Elke container zit in een (of meerdere) Docker netwerk (zelf ingesteld of automatisch toegewezen)
+- Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
+---
+
+
+# Port bindings - visueel
+
+
+INSERT IMAGE THAT VISUALISES THIS!
+
+---
+
 # Docker installeren
 
 - Algemene stappen (voor Linux)
