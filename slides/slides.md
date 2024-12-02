@@ -88,6 +88,21 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 ---
 
+# Dockerfile
+
+```
+FROM node:20-alpine   # Kies jouw image
+WORKDIR /app
+COPY . .              # Kopieer de broncode
+
+# Installeer de dependencies en run de software
+
+RUN yarn install --production
+CMD ["node", "./src/index.js"]
+```
+
+---
+
 # Docker Container
 
 - Een draaiende instantie van een image
@@ -121,7 +136,7 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 # Volume binding
 
-- Mappen/bestanden van jouw Docker container binden aan het hostsysteem -> bind mount
+- Mappen/bestanden van jouw Docker container binden aan het hostsysteem -> **bind mount**
 - Nuttig voor data-persistentie
 - Biedt mogelijkheden voor het maken van backups
 - Live aanpassingen maken (development en testen!)
