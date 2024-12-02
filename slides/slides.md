@@ -33,8 +33,25 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 
 - Virtualisatie op een ander niveau: containerisatie
-- Gebruikt Linux kernel
-- Opzetten (geïsoleerde) applicaties
+- Gebruikt onderliggend Linux kernel
+- Opzetten van applicaties
+- Worden geïsoleerd van het hostsysteem (sandbox)
+
+---
+
+# Waarom containerisatie en Docker?
+
+- Bundelen van software en requirements/dependencies!
+- Isoleren van draaiende applicaties
+- Makkelijk verschillende containers op een systeem naast elkaar
+- Verdelen van resources hostsysteem -> minder verspilling!
+
+---
+
+# Doel?
+
+![bg left:100% 80%](./img/worksonmymachine.jpg)
+
 
 ---
 
@@ -42,41 +59,47 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 - Wat is nu eigenlijk het verschil met een virtuele machine (VM)?
 
-  - Virtuele machine: emuleert volledige computer (virtuele hardware!)
-  - Docker container: spreekt Linux-kernel aan die draait op een hostsysteem
+- Virtuele machine: emuleert volledige computer (virtuele hardware!)
+- (Docker) container: emuleert op applicatie-niveau
+---
+
+# Visualisatie
+
+![bg left:100% 80%](./img/virtualisation_versus_containerisation.png)
+
+<!-- Source: https://www.techlistic.com/2023/05/what-is-operating-system.html -->
+
 ---
 
 # Bouwstenen van Docker
 
-- Dockerfile
 - Docker Image
 - Docker Container
 
 
 ---
 
-# Dockerfile
-
-- Wat is een Dockerfile?
-
----
-
 # Docker Image
 
-- Wat is een Docker Image?
-- Dockerhub!
+- Beschrijving van alles dat nodig is voor een applicatie
+- Het recept of de blauwdruk
+- Gebaseerd op een Dockerfile (~ ingrediënten)
+- Kan je zelf heel custom maken!
 
 ---
 
 # Docker Container
 
-- Wat is een Docker container?
+- Een draaiende instantie van een image
+- Geïsoleerde sandbox (los van hostsysteem)
+- Kan je customizen met variabelen
+- Vaak ga je een container opspinnen van een bestaande image!
 
 ---
 
 # Docker - structuur
 
-![bg 100% 100%](./img/docker-structure.png)
+![bg 100% 100%](./img/docker-structuur.png)
 
 
 ---
@@ -92,16 +115,26 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Port bindings - visueel
 
 
-INSERT IMAGE THAT VISUALISES THIS!
+![bg:100% 80%](./img/port_binding_example.png)
+
+---
+
+# Volume binding
+
+- Mappen/bestanden van jouw Docker container binden aan het hostsysteem -> bind mount
+- Nuttig voor data-persistentie
+- Biedt mogelijkheden voor het maken van backups
+- Live aanpassingen maken (development en testen!)
 
 ---
 
 # Docker installeren
 
 - Algemene stappen (voor Linux)
-- Voor deze demo: werken in een virtuele machine!
-- Andere mogelijkheden: Docker Desktop en WSL (Opgelet!!)
-
+- Voor deze demo: werken in een virtuele machine (Ubuntu desktop)
+- Ook heel eenvoudig mogelijk op MacOS
+- Windows mogelijkheden: WSL en Docker desktop (Opgelet!!)
+- Voorkeur werken in Linux omgeving!
 ---
 
 # Docker gebruiken - commando's
@@ -120,7 +153,6 @@ INSERT IMAGE THAT VISUALISES THIS!
 - Extra's en handige zaken:
 - docker exec -ti 
 - docker system prune -a
-- 
 
 ---
 
@@ -131,14 +163,6 @@ INSERT IMAGE THAT VISUALISES THIS!
 - Wat met meerdere containers tegelijk opstarten?
 - Oplossing: Docker Compose!
 
-
----
-
-# Volume binding
-
-- Mappen/bestanden van jouw Docker container binden aan het hostsysteem
-- Nuttig voor data-persistentie
-- Biedt mogelijkheden voor het maken van backups
 
 ---
 
