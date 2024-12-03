@@ -196,6 +196,16 @@ sudo apt-get update
 
 ---
 
+# Docker installeren - Ubuntu
+
+- QoL upgrade: voeg jouw eigen gebruiker toe aan de `docker`groep! 
+  - Dan moet je niet telkens sudo voor het commando zetten...
+
+`sudo usermod -aG docker <jouwUserHere>`
+
+
+---
+
 # Docker gebruiken - beheren van containers
 
 - Kijken welke containers momenteel draaien
@@ -204,7 +214,7 @@ sudo apt-get update
 
 - Een container manueel opstarten
   
-`docker run`
+`docker run <container> <parameters>`
 
 
 ---
