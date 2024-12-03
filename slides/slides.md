@@ -210,9 +210,25 @@ Start jouw eerste testcontainer:
 
 
 ![bg left:100% 80%](./img/dockerhub_images.png)
+
+---
+# Docker - containerbeheer images
+
+- Kijken welke images beschikbaar zijn
+
+`docker image list`
+
+- Een specifieke image verwijderen
+
+`docker rmi <image>`
+
 ---
 
-# Docker - containerbeheer
+# Docker - containerbeheer container
+
+- Alle containers bekijken (ook gestopte containers)
+
+`docker ps -a`
 
 - Een specifieke container stopzetten 
   
@@ -221,10 +237,6 @@ Start jouw eerste testcontainer:
 - Een specifieke container verwijderen
 
 `docker rm <container>`
-
-- Een specifieke image verwijderen
-
-`docker rmi <image>`
 
 ---
 # Port bindings
@@ -245,6 +257,20 @@ Start jouw eerste testcontainer:
 ![bg:100% 80%](./img/port_binding_example.png)
 
 ---
+
+# Port binding - demo
+
+- Gebruik volgende run commando:
+
+`docker run -p 8089:80 --name webserver nginx`
+
+OF
+
+`docker run -d -p 8089:80 --name webserver nginx`
+
+- Open een browser en surf naar http://localhost:8089
+
+- Je ziet nu een webserver die je zelf aan het hosten bent op jouw eigen systeem!
 
 # Data bijhouden
 
