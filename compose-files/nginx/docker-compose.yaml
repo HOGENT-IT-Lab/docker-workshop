@@ -1,0 +1,7 @@
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        image: nginx
