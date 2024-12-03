@@ -178,7 +178,7 @@ sudo apt-get update
 
 - Een container manueel opstarten
   
-`docker run <container> <parameters>`
+`docker run <image> <parameters>`
 
 
 ---
