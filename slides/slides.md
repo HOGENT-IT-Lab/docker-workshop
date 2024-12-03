@@ -453,6 +453,16 @@ services:
         restart: unless-stopped
 ```
 ---
+# Schaalbaarheid
+
+- Docker compose kan alvast meerdere containers beheren
+- Leuke tool voor overzicht: [Portainer](https://www.portainer.io/)
+- Wat als we meer nodig hebben? Container orchestration!
+  - Kubernetes
+  - Docker Swarm
+  - ..
+
+---
 
 # Docker networking
 
