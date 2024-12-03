@@ -297,6 +297,8 @@ OF
   
 - Beschrijving van container(s) in yaml formaat: `docker-compose.yaml`
 
+TIP: clone deze git repository met `git clone https://github.com/HOGENT-IT-Lab/docker-workshop.git`
+
 
 ---
 
