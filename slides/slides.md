@@ -308,8 +308,45 @@ OF
 
 - Docker run commando's: handig maar omslachtig...
 - Wat met meerdere containers tegelijk opstarten?
-- Oplossing: Docker Compose!
+- Docker compose: beschrijving van container(s) in .yaml formaat
+- Naam van bestand: `docker-compose.yaml`
 
+
+---
+
+# Docker Compose - nginx voorbeeld
+
+`docker run -p 8089:80 --name webserver nginx`
+
+WORDT in `docker-compose.yaml`:
+
+```yml
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        image: nginx
+```
+
+---
+
+# Docker compose - gebruik
+
+- Containers opstarten met compose (in achtergrond)
+`docker compose up -d`
+
+- Containers stopzetten met compose
+`docker compose down`
+
+
+---
+
+# Docker compose - nginx voorbeeld
+
+- Plaats de docker-compose.yaml file van nginx ergens op jouw systeem
+- Open de terminal in deze map en gebruik docker compose om de container te starten
 
 ---
 
