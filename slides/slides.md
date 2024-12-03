@@ -436,6 +436,22 @@ alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
 ---
 # Minecraft - docker compose
 
+```yaml
+services:
+    minecraft-server:
+        image: itzg/minecraft-server
+        container_name: minecraft-server
+        environment:
+            EULA: "true"
+            # VERSION: "1.18.1" # Specify version
+        ports:
+            - "25565:25565"
+        volumes:
+            - /srv/minecraft/data:/data
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
+```
 ---
 
 # Docker networking
