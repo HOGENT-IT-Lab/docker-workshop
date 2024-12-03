@@ -119,43 +119,7 @@ CMD ["node", "./src/index.js"]
 
 ---
 
-# Port bindings
 
-- Jouw container op het hostsysteem kan één of meerdere poorten beschikbaar stellen
-- Klassieke voorbeelden:    
-  - 80 voor een webserver
-  - 3306 voor een databank
-  - 25565 voor minecraft server (misschien iets minder klassiek...)
-- Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
-
----
-
-
-# Port bindings - visueel
-
-
-![bg:100% 80%](./img/port_binding_example.png)
-
----
-
-# Data bijhouden
-
-- Docker houdt voor jou data bij in bepaalde **volumes**
-- Kan je zelf declareren bij docker commando's (zie later)
-- Doel: als je container stopt, dan verlies je niet alle data!
-
-
----
-
-# Volume binding
-
-- Alternatief voor Docker volumes
-- Mappen/bestanden van jouw Docker container RECHTSTREEKS binden aan het hostsysteem -> **bind mount**
-- Nuttig voor data-persistentie
-- Biedt mogelijkheden voor het maken van backups
-- Live aanpassingen maken (development en testen!)
-
----
 
 # Docker installeren
 
@@ -242,6 +206,43 @@ Start jouw eerste testcontainer:
 - Een specifieke image verwijderen
 
 `docker rmi <image>`
+
+---
+# Port bindings
+
+- Jouw container op het hostsysteem kan één of meerdere poorten beschikbaar stellen
+- Klassieke voorbeelden:    
+  - 80 voor een webserver
+  - 3306 voor een databank
+  - 25565 voor minecraft server (misschien iets minder klassiek...)
+- Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
+
+---
+
+
+# Port bindings - visueel
+
+
+![bg:100% 80%](./img/port_binding_example.png)
+
+---
+
+# Data bijhouden
+
+- Docker houdt voor jou data bij in bepaalde **volumes**
+- Kan je zelf declareren bij docker commando's (zie later)
+- Doel: als je container stopt, dan verlies je niet alle data!
+
+
+---
+
+# Volume binding
+
+- Alternatief voor Docker volumes
+- Mappen/bestanden van jouw Docker container RECHTSTREEKS binden aan het hostsysteem -> **bind mount**
+- Nuttig voor data-persistentie
+- Biedt mogelijkheden voor het maken van backups
+- Live aanpassingen maken (development en testen!)
 
 ---
 
