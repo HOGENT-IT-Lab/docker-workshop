@@ -475,8 +475,11 @@ services:
 # Nuttige links - Docker
 
 - [Docker documentatie](https://docs.docker.com/)
+  
 - [Docker installatie](https://docs.docker.com/engine/install/)
+  
 - [Docker Compose documentatie](https://docs.docker.com/compose/)
+  
 - [Docker Networking documentatie](https://docs.docker.com/network/)
 
 ---
