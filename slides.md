@@ -31,18 +31,17 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 # Wat is Docker?
 
+- Tool voor ontwikkelen, uitvoeren en deployen van software
+- Maakt gebruik van containerisatie-technologie (~virtualisatie op applicatie-niveau)
+- Gebaseerd op Linux kernel
 
-- Virtualisatie op een ander niveau: containerisatie
-- Gebruikt onderliggend Linux kernel
-- Opzetten van applicaties
-- Worden geïsoleerd van het hostsysteem (sandbox)
 
 ---
 
-# Waarom containerisatie en Docker?
+# Waarom Docker (en containerisatie)?
 
 - Bundelen van software en requirements/dependencies!
-- Isoleren van draaiende applicaties
+- Isoleren van draaiende applicaties van hostsysteem
 - Makkelijk verschillende containers op een systeem naast elkaar
 - Verdelen van resources hostsysteem -> minder verspilling!
 
@@ -73,8 +72,9 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 # Bouwstenen van Docker
 
-- Docker Image
-- Docker Container
+- Docker Image -> blauwdruk voor een container
+  
+- Docker Container -> instantie van een image
 
 
 ---
@@ -82,13 +82,13 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Docker Image
 
 - Beschrijving van alles dat nodig is voor een applicatie
-- Het recept of de blauwdruk
-- Gebaseerd op een Dockerfile (~ ingrediënten)
+- Blauwdruk of 'recept'
 - Kan je zelf heel custom maken!
+- Gebaseerd op een **Dockerfile** (~ 'ingrediënten')
 
 ---
 
-# Dockerfile
+# Dockerfile - voorbeeld
 
 ```
 FROM node:20-alpine   # Kies jouw image
@@ -106,7 +106,7 @@ CMD ["node", "./src/index.js"]
 # Docker Container
 
 - Een draaiende instantie van een image
-- Geïsoleerde sandbox (los van hostsysteem)
+- Geïsoleerde sandbox (los van hostsysteem)*
 - Kan je customizen met variabelen
 - Vaak ga je een container opspinnen van een bestaande image!
 
@@ -121,9 +121,13 @@ CMD ["node", "./src/index.js"]
 
 # Port bindings
 
-- Elke container heeft een IP-adres (zelf ingesteld of automatisch toegewezen)
-- Elke container zit in een (of meerdere) Docker netwerk (zelf ingesteld of automatisch toegewezen)
+- Jouw container op het hostsysteem kan één of meerdere poorten beschikbaar stellen
+- Klassieke voorbeelden:    
+  - 80 voor een webserver
+  - 3306 voor een databank
+  - 25565 voor minecraft server (misschien iets minder klassiek...)
 - Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
+
 ---
 
 
@@ -134,9 +138,19 @@ CMD ["node", "./src/index.js"]
 
 ---
 
+# Data bijhouden
+
+- Docker houdt voor jou data bij in bepaalde **volumes**
+- Kan je zelf declareren bij docker commando's (zie later)
+- Doel: als je container stopt, dan verlies je niet alle data!
+
+
+---
+
 # Volume binding
 
-- Mappen/bestanden van jouw Docker container binden aan het hostsysteem -> **bind mount**
+- Alternatief voor Docker volumes
+- Mappen/bestanden van jouw Docker container RECHTSTREEKS binden aan het hostsysteem -> **bind mount**
 - Nuttig voor data-persistentie
 - Biedt mogelijkheden voor het maken van backups
 - Live aanpassingen maken (development en testen!)
@@ -145,29 +159,91 @@ CMD ["node", "./src/index.js"]
 
 # Docker installeren
 
-- Algemene stappen (voor Linux)
-- Voor deze demo: werken in een virtuele machine (Ubuntu desktop)
-- Ook heel eenvoudig mogelijk op MacOS
-- Windows mogelijkheden: WSL en Docker desktop (Opgelet!!)
-- Voorkeur werken in Linux omgeving!
----
-
-# Docker gebruiken - commando's
-
-- Beheren van containers!
-- docker ps
-- docker run
-- docker stop
-- docker rm
-- docker rmi
+- Algemene stappen te vinden op de officiële [documentatie](https://docs.docker.com/engine/install/)
+- Deze demo's: recente versie van Ubuntu Desktop 
+- Voor niet-Linux systemen: Docker desktop (!)
+- Voorkeur werken in Linux omgeving? -> servers vaak Linux OS
 
 ---
 
-# Docker gebruiken - commando's
+# Docker installeren - Ubuntu
 
-- Extra's en handige zaken:
-- docker exec -ti 
-- docker system prune -a
+- APT repository toevoegen
+
+```
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+---
+
+# Docker installeren - Ubuntu
+
+- Meest recente versie downloaden van de software
+
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
+
+---
+
+# Docker gebruiken - beheren van containers
+
+- Kijken welke containers momenteel draaien
+  
+`docker ps`
+
+- Een container manueel opstarten
+  
+`docker run`
+
+
+---
+
+# Container opstarten - hello world
+
+Start jouw eerste testcontainer:
+
+`docker run hello-world`
+
+
+
+---
+
+# Docker - containerbeheer
+
+- Een specifieke container stopzetten 
+  
+`docker stop <container>`
+
+- Een specifieke container verwijderen
+
+`docker rm <container>`
+
+- Een specifieke image verwijderen
+
+`docker rmi <image>`
+
+---
+
+# Docker - handige commando's
+
+- Een interactieve shell openen in een specifieke container
+  
+`docker exec -ti <container> <shell>`
+
+- Verwijder ongebruikte images en containers
+
+`docker system prune -a`
 
 ---
 
