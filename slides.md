@@ -47,6 +47,16 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 ---
 
+
+# Wie gebruikt Docker?
+
+- Spotify 
+- Netflix
+- PayPal
+- En nog zo veel meer...
+
+---
+
 # Doel?
 
 ![bg left:100% 80%](./img/worksonmymachine.jpg)
@@ -124,7 +134,7 @@ CMD ["node", "./src/index.js"]
 # Docker installeren
 
 - Algemene stappen te vinden op de officiële [documentatie](https://docs.docker.com/engine/install/)
-- Deze demo's: recente versie van Ubuntu Desktop 
+- Deze demo's: recente versie van Ubuntu Desktop
 - Voor niet-Linux systemen: Docker desktop (!)
 - Voorkeur werken in Linux omgeving? -> servers vaak Linux OS
 
@@ -133,8 +143,9 @@ CMD ["node", "./src/index.js"]
 # Docker installeren - Ubuntu
 
 - APT repository toevoegen
+Note: commando's regel per regel uitvoeren! 
 
-```
+```bash
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -147,6 +158,7 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt-get update
 ```
 
@@ -214,7 +226,7 @@ Start jouw eerste testcontainer:
 ---
 # Docker - containerbeheer images
 
-- Kijken welke images beschikbaar zijn
+- Kijken welke images beschikbaar zijn op jouw systeem
 
 `docker image list`
 
@@ -241,8 +253,8 @@ Start jouw eerste testcontainer:
 ---
 # Port bindings
 
-- Jouw container op het hostsysteem kan één of meerdere poorten beschikbaar stellen
-- Klassieke voorbeelden:    
+- Jouw containers op het hostsysteem kunnen één of meerdere poorten beschikbaar stellen
+- Klassieke voorbeelden:
   - 80 voor een webserver
   - 3306 voor een databank
   - 25565 voor minecraft server (misschien iets minder klassiek...)
@@ -272,12 +284,64 @@ OF
 
 - Je ziet nu een webserver die je zelf aan het hosten bent op jouw eigen systeem!
 
+--- 
+
+# Docker gebruiken - Docker Compose
+
+
+- `docker run` commando's: handig maar omslachtig...
+  
+- Wat met meerdere containers tegelijk opstarten?
+  
+- Een oplossing: Docker compose!
+  
+- Beschrijving van container(s) in yaml formaat: `docker-compose.yaml`
+
+
+---
+
+# Docker Compose - nginx voorbeeld
+
+`docker run -p 8089:80 --name webserver nginx`
+
+WORDT in `docker-compose.yaml`:
+
+```yml
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        image: nginx
+```
+
+---
+
+# Docker compose - gebruik
+
+- Containers opstarten met compose (in achtergrond)
+`docker compose up -d`
+
+- Containers stopzetten met compose
+`docker compose down`
+
+
+---
+
+# Docker compose - nginx voorbeeld
+
+- Plaats de `docker-compose.yaml` file van nginx ergens op jouw systeem
+  
+- Open de terminal in deze map en gebruik `docker compose up -d` om de container te starten
+
+
+---
 # Data bijhouden
 
 - Docker houdt voor jou data bij in bepaalde **volumes**
 - Kan je zelf declareren bij docker commando's (zie later)
 - Doel: als je container stopt, dan verlies je niet alle data!
-
 
 ---
 
@@ -288,6 +352,65 @@ OF
 - Nuttig voor data-persistentie
 - Biedt mogelijkheden voor het maken van backups
 - Live aanpassingen maken (development en testen!)
+
+---
+# Bind mount - nginx
+
+- Pas de `docker-compose.yaml` aan of maak een nieuwe aan met de bind mount
+- Maak in dezelfde map als `docker-compose.yaml` een map `nginx-root`
+- Zet hierin een index.html bestand 
+
+---
+# Docker compose file
+
+```yaml
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        volumes:
+          - ./nginx-root:/usr/share/nginx/html
+        image: nginx
+```
+
+---
+
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker demo</title>
+</head>
+<body>
+    <h1>Dit is nieuwe content!</h1>
+</body>
+</html>
+```
+
+
+---
+# Directory overzicht
+
+- Je zou onderstaande structuur moeten bekomen
+- Indien correct: probeer `docker compose up -d`
+- Surf opnieuw naar http://localhost:8089
+
+```
+alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
+.
+├── docker-compose.yaml
+└── nginx-root
+    └── index.html
+
+2 directories, 2 files
+```
+
 
 ---
 
@@ -303,17 +426,7 @@ OF
 
 ---
 
-# Docker gebruiken - Docker Compose
-
-
-- Docker run commando's: handig maar omslachtig...
-- Wat met meerdere containers tegelijk opstarten?
-- Oplossing: Docker Compose!
-
-
----
-
-# Docker demo - Minecraft server
+# Leuk voorbeld - Minecraft server
 
 
 - Eigen Minecraft server opstarten in een container
@@ -321,20 +434,52 @@ OF
 - Speel Minecraft op een server die je zelf in beheer hebt!
 
 ---
+# Minecraft - docker compose
+
+```yaml
+services:
+    minecraft-server:
+        image: itzg/minecraft-server
+        container_name: minecraft-server
+        environment:
+            EULA: "true"
+            # VERSION: "1.18.1" # Specify version
+        ports:
+            - "25565:25565"
+        volumes:
+            - ./server-data:/data
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
+```
+---
+# Schaalbaarheid
+
+- Docker compose kan alvast meerdere containers beheren
+- Leuke tool voor overzicht: [Portainer](https://www.portainer.io/)
+- Wat als we meer nodig hebben? Container orchestration!
+  - Kubernetes
+  - Docker Swarm
+  - ..
+
+---
 
 # Docker networking
 
-- Standaard: Docker regelt vanalles zelf under the hood
+- Standaard: Docker regelt vanalles zelf *under the hood*
 - Je kan zelf (interne) Docker netwerken declareren
 - Nut? Isolatie van netwerken, overzicht, veiligheid,...
-
+- Zeker de moeite eens te bekijken!
 ---
 
 # Nuttige links - Docker
 
 - [Docker documentatie](https://docs.docker.com/)
+  
 - [Docker installatie](https://docs.docker.com/engine/install/)
+  
 - [Docker Compose documentatie](https://docs.docker.com/compose/)
+  
 - [Docker Networking documentatie](https://docs.docker.com/network/)
 
 ---
