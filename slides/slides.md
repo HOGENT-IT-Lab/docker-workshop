@@ -447,7 +447,7 @@ services:
         ports:
             - "25565:25565"
         volumes:
-            - /srv/minecraft/data:/data
+            - ./server-data:/data
         stdin_open: true
         tty: true
         restart: unless-stopped
