@@ -189,8 +189,27 @@ Start jouw eerste testcontainer:
 
 `docker run hello-world`
 
+---
+
+# Container opstarten - wat gebeurt er?
+
+- Docker zal kijken of jouw gewenste image lokaal aanwezig is
+- Niet aanwezig? Docker zal de image downloaden van Dockerhub
+- Container wordt gemaakt op basis van de image en variabelen
+- Container zal opstarten en zijn taak uitvoeren!
+
+---
+
+# DockerHub
+
+- Plaats waar je [images kan vinden en downloaden](https://hub.docker.com/)
+- Don't reinvent the wheel!
 
 
+---
+
+
+![bg left:100% 80%](./img/dockerhub_images.png)
 ---
 
 # Docker - containerbeheer
