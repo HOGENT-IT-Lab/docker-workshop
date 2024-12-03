@@ -456,10 +456,10 @@ services:
 
 # Docker networking
 
-- Standaard: Docker regelt vanalles zelf under the hood
+- Standaard: Docker regelt vanalles zelf *under the hood*
 - Je kan zelf (interne) Docker netwerken declareren
 - Nut? Isolatie van netwerken, overzicht, veiligheid,...
-
+- Zeker de moeite eens te bekijken!
 ---
 
 # Nuttige links - Docker
