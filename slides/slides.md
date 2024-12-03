@@ -241,7 +241,7 @@ Start jouw eerste testcontainer:
 ---
 # Port bindings
 
-- Jouw container op het hostsysteem kan één of meerdere poorten beschikbaar stellen
+- Jouw containers op het hostsysteem kunnen één of meerdere poorten beschikbaar stellen
 - Klassieke voorbeelden:    
   - 80 voor een webserver
   - 3306 voor een databank
