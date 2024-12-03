@@ -284,12 +284,64 @@ OF
 
 - Je ziet nu een webserver die je zelf aan het hosten bent op jouw eigen systeem!
 
+--- 
+
+# Docker gebruiken - Docker Compose
+
+
+- `docker run` commando's: handig maar omslachtig...
+  
+- Wat met meerdere containers tegelijk opstarten?
+  
+- Een oplossing: Docker compose!
+  
+- Beschrijving van container(s) in yaml formaat: `docker-compose.yaml`
+
+
+---
+
+# Docker Compose - nginx voorbeeld
+
+`docker run -p 8089:80 --name webserver nginx`
+
+WORDT in `docker-compose.yaml`:
+
+```yml
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        image: nginx
+```
+
+---
+
+# Docker compose - gebruik
+
+- Containers opstarten met compose (in achtergrond)
+`docker compose up -d`
+
+- Containers stopzetten met compose
+`docker compose down`
+
+
+---
+
+# Docker compose - nginx voorbeeld
+
+- Plaats de `docker-compose.yaml` file van nginx ergens op jouw systeem
+  
+- Open de terminal in deze map en gebruik `docker compose up -d` om de container te starten
+
+
+---
 # Data bijhouden
 
 - Docker houdt voor jou data bij in bepaalde **volumes**
 - Kan je zelf declareren bij docker commando's (zie later)
 - Doel: als je container stopt, dan verlies je niet alle data!
-
 
 ---
 
@@ -345,7 +397,7 @@ services:
 ---
 # Directory overzicht
 
-- Je zou de volgende structuur moeten bekomen
+- Je zou onderstaande structuur moeten bekomen
 - Indien correct: probeer `docker compose up -d`
 - Surf opnieuw naar http://localhost:8089
 
@@ -374,59 +426,15 @@ alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
 
 ---
 
-# Docker gebruiken - Docker Compose
-
-
-- Docker run commando's: handig maar omslachtig...
-- Wat met meerdere containers tegelijk opstarten?
-- Docker compose: beschrijving van container(s) in .yaml formaat
-- Naam van bestand: `docker-compose.yaml`
-
-
----
-
-# Docker Compose - nginx voorbeeld
-
-`docker run -p 8089:80 --name webserver nginx`
-
-WORDT in `docker-compose.yaml`:
-
-```yml
-name: nginx
-services:
-    nginx:
-        ports:
-            - 8089:80
-        container_name: webserver
-        image: nginx
-```
-
----
-
-# Docker compose - gebruik
-
-- Containers opstarten met compose (in achtergrond)
-`docker compose up -d`
-
-- Containers stopzetten met compose
-`docker compose down`
-
-
----
-
-# Docker compose - nginx voorbeeld
-
-- Plaats de docker-compose.yaml file van nginx ergens op jouw systeem
-- Open de terminal in deze map en gebruik docker compose om de container te starten
-
----
-
-# Docker demo - Minecraft server
+# Leuk voorbeld - Minecraft server
 
 
 - Eigen Minecraft server opstarten in een container
 - Volume binding voor de data van de server
 - Speel Minecraft op een server die je zelf in beheer hebt!
+
+---
+# Minecraft - docker compose
 
 ---
 
