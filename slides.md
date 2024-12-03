@@ -340,7 +340,7 @@ services:
 # Data bijhouden
 
 - Docker houdt voor jou data bij in bepaalde **volumes**
-- Kan je zelf declareren bij docker commando's (zie later)
+- Kan je zelf declareren of definiëren
 - Doel: als je container stopt, dan verlies je niet alle data!
 
 ---
