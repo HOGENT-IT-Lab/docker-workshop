@@ -178,7 +178,7 @@ sudo apt-get update
 
 - Een container manueel opstarten
   
-`docker run <container> <parameters>`
+`docker run <image> <parameters>`
 
 
 ---
@@ -189,11 +189,46 @@ Start jouw eerste testcontainer:
 
 `docker run hello-world`
 
+---
+
+# Container opstarten - wat gebeurt er?
+
+- Docker zal kijken of jouw gewenste image lokaal aanwezig is
+- Niet aanwezig? Docker zal de image downloaden van Dockerhub
+- Container wordt gemaakt op basis van de image en variabelen
+- Container zal opstarten en zijn taak uitvoeren!
+
+---
+
+# DockerHub
+
+- Plaats waar je [images kan vinden en downloaden](https://hub.docker.com/)
+- Don't reinvent the wheel!
 
 
 ---
 
-# Docker - containerbeheer
+
+![bg left:100% 80%](./img/dockerhub_images.png)
+
+---
+# Docker - containerbeheer images
+
+- Kijken welke images beschikbaar zijn
+
+`docker image list`
+
+- Een specifieke image verwijderen
+
+`docker rmi <image>`
+
+---
+
+# Docker - containerbeheer container
+
+- Alle containers bekijken (ook gestopte containers)
+
+`docker ps -a`
 
 - Een specifieke container stopzetten 
   
@@ -202,10 +237,6 @@ Start jouw eerste testcontainer:
 - Een specifieke container verwijderen
 
 `docker rm <container>`
-
-- Een specifieke image verwijderen
-
-`docker rmi <image>`
 
 ---
 # Port bindings
@@ -226,6 +257,20 @@ Start jouw eerste testcontainer:
 ![bg:100% 80%](./img/port_binding_example.png)
 
 ---
+
+# Port binding - demo
+
+- Gebruik volgende run commando:
+
+`docker run -p 8089:80 --name webserver nginx`
+
+OF
+
+`docker run -d -p 8089:80 --name webserver nginx`
+
+- Open een browser en surf naar http://localhost:8089
+
+- Je ziet nu een webserver die je zelf aan het hosten bent op jouw eigen systeem!
 
 # Data bijhouden
 
