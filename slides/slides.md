@@ -47,6 +47,16 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 
 ---
 
+
+# Wie gebruikt Docker?
+
+- Spotify 
+- Netflix
+- PayPal
+- En nog zo veel meer...
+
+---
+
 # Doel?
 
 ![bg left:100% 80%](./img/worksonmymachine.jpg)
@@ -124,7 +134,7 @@ CMD ["node", "./src/index.js"]
 # Docker installeren
 
 - Algemene stappen te vinden op de officiële [documentatie](https://docs.docker.com/engine/install/)
-- Deze demo's: recente versie van Ubuntu Desktop 
+- Deze demo's: recente versie van Ubuntu Desktop
 - Voor niet-Linux systemen: Docker desktop (!)
 - Voorkeur werken in Linux omgeving? -> servers vaak Linux OS
 
@@ -133,8 +143,9 @@ CMD ["node", "./src/index.js"]
 # Docker installeren - Ubuntu
 
 - APT repository toevoegen
+Note: commando's regel per regel uitvoeren! 
 
-```
+```bash
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -147,6 +158,7 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt-get update
 ```
 
@@ -214,7 +226,7 @@ Start jouw eerste testcontainer:
 ---
 # Docker - containerbeheer images
 
-- Kijken welke images beschikbaar zijn
+- Kijken welke images beschikbaar zijn op jouw systeem
 
 `docker image list`
 
@@ -242,7 +254,7 @@ Start jouw eerste testcontainer:
 # Port bindings
 
 - Jouw containers op het hostsysteem kunnen één of meerdere poorten beschikbaar stellen
-- Klassieke voorbeelden:    
+- Klassieke voorbeelden:
   - 80 voor een webserver
   - 3306 voor een databank
   - 25565 voor minecraft server (misschien iets minder klassiek...)
@@ -288,6 +300,65 @@ OF
 - Nuttig voor data-persistentie
 - Biedt mogelijkheden voor het maken van backups
 - Live aanpassingen maken (development en testen!)
+
+---
+# Bind mount - nginx
+
+- Pas de `docker-compose.yaml` aan of maak een nieuwe aan met de bind mount
+- Maak in dezelfde map als `docker-compose.yaml` een map `nginx-root`
+- Zet hierin een index.html bestand 
+
+---
+# Docker compose file
+
+```yaml
+name: nginx
+services:
+    nginx:
+        ports:
+            - 8089:80
+        container_name: webserver
+        volumes:
+          - ./nginx-root:/usr/share/nginx/html
+        image: nginx
+```
+
+---
+
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker demo</title>
+</head>
+<body>
+    <h1>Dit is nieuwe content!</h1>
+</body>
+</html>
+```
+
+
+---
+# Directory overzicht
+
+- Je zou de volgende structuur moeten bekomen
+- Indien correct: probeer `docker compose up -d`
+- Surf opnieuw naar http://localhost:8089
+
+```
+alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
+.
+├── docker-compose.yaml
+└── nginx-root
+    └── index.html
+
+2 directories, 2 files
+```
+
 
 ---
 
