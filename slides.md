@@ -113,9 +113,20 @@ CMD ["node", "./src/index.js"]
 
 ---
 
+# Dockerfile naar image
+
+- Gebruik het `docker build`commando
+- Gebruikt de instructies in Dockerfile om een image te bouwen
+```bash
+docker build -t my-image-name:latest .
+```
+
+---
+
 # Docker Container
 
 - Een draaiende instantie van een image
+- Gebruik het `docker run` commando
 - Geïsoleerde sandbox (los van hostsysteem)*
 - Kan je customizen met variabelen
 - Vaak ga je een container opspinnen van een bestaande image!
@@ -174,7 +185,7 @@ sudo apt-get update
 
 # Docker installeren - Ubuntu
 
-- QoL upgrade: voeg jouw eigen gebruiker toe aan de `docker`groep! 
+- Linux-QoL upgrade: voeg jouw eigen gebruiker toe aan de `docker`groep! 
   - Dan moet je niet telkens sudo voor het commando zetten...
 
 `sudo usermod -aG docker <jouwUserHere>`
@@ -256,7 +267,7 @@ Start jouw eerste testcontainer:
 - Jouw containers op het hostsysteem kunnen één of meerdere poorten beschikbaar stellen
 - Klassieke voorbeelden:
   - 80 voor een webserver
-  - 3306 voor een databank
+  - 3306 voor een (SQL) databank
   - 25565 voor minecraft server (misschien iets minder klassiek...)
 - Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
 
@@ -296,6 +307,8 @@ OF
 - Een oplossing: Docker compose!
   
 - Beschrijving van container(s) in yaml formaat: `docker-compose.yaml`
+
+TIP: clone deze git repository met `git clone https://github.com/HOGENT-IT-Lab/docker-workshop.git`
 
 
 ---
@@ -426,7 +439,7 @@ alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
 
 ---
 
-# Leuk voorbeld - Minecraft server
+# Leuk voorbeeld - Minecraft server
 
 
 - Eigen Minecraft server opstarten in een container
@@ -443,6 +456,7 @@ services:
         container_name: minecraft-server
         environment:
             EULA: "true"
+            MEMORY: 4G # recommended amount of dedotated wam is 4G
             # VERSION: "1.18.1" # Specify version
         ports:
             - "25565:25565"
