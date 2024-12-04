@@ -267,7 +267,7 @@ Start jouw eerste testcontainer:
 - Jouw containers op het hostsysteem kunnen één of meerdere poorten beschikbaar stellen
 - Klassieke voorbeelden:
   - 80 voor een webserver
-  - 3306 voor een databank
+  - 3306 voor een (SQL) databank
   - 25565 voor minecraft server (misschien iets minder klassiek...)
 - Concept van port binding: een poort van een container koppelen aan een poort van het hostsysteem
 
