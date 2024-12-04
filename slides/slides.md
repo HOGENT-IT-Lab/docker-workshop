@@ -101,7 +101,7 @@ https://hogent-it-lab.github.io/docker-workshop/slides
 # Dockerfile - voorbeeld
 
 ```
-FROM node:20-alpine   # Kies jouw image
+FROM node:20-alpine   # Kies jouw base image -kan verschillen per versie!
 WORKDIR /app
 COPY . .              # Kopieer de broncode
 
