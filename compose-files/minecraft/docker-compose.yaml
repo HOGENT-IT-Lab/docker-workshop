@@ -4,6 +4,7 @@ services:
         container_name: minecraft-server
         environment:
             EULA: "true"
+            MEMORY: 4G # recommended amount of dedotated wam is 4G
             # VERSION: "1.18.1" # Specify version
         ports:
             - "25565:25565"
