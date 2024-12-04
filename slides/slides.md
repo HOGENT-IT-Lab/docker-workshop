@@ -113,9 +113,20 @@ CMD ["node", "./src/index.js"]
 
 ---
 
+# Dockerfile naar image
+
+- Gebruik het `docker build`commando
+- Gebruikt de instructies in Dockerfile om een image te bouwen
+```bash
+docker build -t my-image-name:latest .
+```
+
+---
+
 # Docker Container
 
 - Een draaiende instantie van een image
+- Gebruik het `docker run` commando
 - Geïsoleerde sandbox (los van hostsysteem)*
 - Kan je customizen met variabelen
 - Vaak ga je een container opspinnen van een bestaande image!
