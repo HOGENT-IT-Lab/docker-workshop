@@ -428,7 +428,7 @@ alexander@docker-demo:~/Desktop/nginx-volume-bind$ tree
 
 ---
 
-# Leuk voorbeld - Minecraft server
+# Leuk voorbeeld - Minecraft server
 
 
 - Eigen Minecraft server opstarten in een container
