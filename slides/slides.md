@@ -505,3 +505,13 @@ services:
 - [DockerHub](https://hub.docker.com/)
   
 - [Docker cheat sheet](https://docs.docker.com/get-started/docker_cheatsheet.pdf)
+
+
+---
+
+# Demo medestudent
+
+Link naar repository:
+
+- [GitHub repo](https://github.com/plofski/DockerAsteroids)
+- [Dockerhub image](https://hub.docker.com/r/plofski/asteroids-game/tags)
